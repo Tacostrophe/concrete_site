@@ -8,6 +8,6 @@ import { JobTitlesController } from './job-titles.controller';
   controllers: [JobTitlesController],
   providers: [JobTitlesService],
   imports: [SequelizeModule.forFeature([JobTitle])],
-  exports: [JobTitlesService],
+  exports: [],
 })
 export class JobTitlesModule {}

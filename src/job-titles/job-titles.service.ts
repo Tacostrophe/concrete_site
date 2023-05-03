@@ -14,7 +14,7 @@ export class JobTitlesService {
     return jobTitle;
   }
 
-  async getJobTitles() {
+  async listJobTitles() {
     const jobTitles = await this.jobTitleRepository.findAll();
     return jobTitles;
   }

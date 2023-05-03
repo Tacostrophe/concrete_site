@@ -20,6 +20,6 @@ export class JobTitlesController {
   @ApiResponse({ status: 200, type: [JobTitle] })
   @Get()
   list() {
-    return this.jobTitlesService.getJobTitles();
+    return this.jobTitlesService.listJobTitles();
   }
 }
