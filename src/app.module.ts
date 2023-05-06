@@ -2,13 +2,14 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { UsersModule } from './users/users.module';
-// import { User } from './users/users.model';
-import { JobTitlesController } from './job-titles/job-titles.controller';
-import { JobTitlesModule } from './job-titles/job-titles.module';
-import { JobTitle } from './job-titles/job-titles.model';
+import { User } from './users/users.model';
+import { RolesModule } from './roles/roles.module';
+import { Role } from './roles/roles.model';
+import { UserRole } from './users/user-role.model';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
-  controllers: [JobTitlesController],
+  controllers: [],
   providers: [],
   imports: [
     ConfigModule.forRoot({
@@ -21,14 +22,12 @@ import { JobTitle } from './job-titles/job-titles.model';
       username: process.env.POSTGRES_USER ?? 'postgres',
       password: process.env.POSTGRES_PASSWORD ?? 'root',
       database: process.env.POSTGRES_DB ?? 'concrete_site',
-      models: [
-        // User,
-        JobTitle,
-      ],
+      models: [User, Role, UserRole],
       autoLoadModels: true,
     }),
     UsersModule,
-    JobTitlesModule,
+    RolesModule,
+    AuthModule,
   ],
 })
 export class AppModule {}
