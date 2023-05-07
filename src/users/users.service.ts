@@ -16,6 +16,7 @@ export class UsersService {
     const role = await this.rolesService.retrieveRoleByValue('engineer');
     if (role) {
       await user.$set('roles', [role.id]);
+      user.roles = [role];
     }
     return user;
   }
@@ -23,5 +24,13 @@ export class UsersService {
   async listUsers() {
     const users = await this.userRepository.findAll({ include: { all: true } });
     return users;
+  }
+
+  async retrieveUserByEmail(email: string) {
+    const user = await this.userRepository.findOne({
+      where: { email },
+      include: { all: true },
+    });
+    return user;
   }
 }
