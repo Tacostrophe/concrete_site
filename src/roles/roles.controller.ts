@@ -23,7 +23,7 @@ export class RolesController {
     return this.rolesService.listRoles();
   }
 
-  @ApiOperation({ summary: 'получение роли по значение' })
+  @ApiOperation({ summary: 'получение роли по значению' })
   @ApiResponse({ status: 200, type: Role })
   @Get('/:value')
   retrieve(@Param('value') value: string) {
