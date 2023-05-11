@@ -1,5 +1,5 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { AuthService } from './auth.service';
 
@@ -8,11 +8,15 @@ import { AuthService } from './auth.service';
 export class AuthController {
   constructor(private authService: AuthService) {}
 
+  @ApiOperation({ summary: 'авторизация пользователя' })
+  @ApiResponse({ status: 200 })
   @Post('/signin')
   signIn(@Body() userDto: CreateUserDto) {
     return this.authService.signIn(userDto);
   }
 
+  @ApiOperation({ summary: 'регистрация пользователя' })
+  @ApiResponse({ status: 200 })
   @Post('/signup')
   signUp(@Body() userDto: CreateUserDto) {
     return this.authService.signUp(userDto);
